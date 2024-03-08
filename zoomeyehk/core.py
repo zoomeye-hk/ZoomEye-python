@@ -57,7 +57,7 @@ def init(args):#根据用户输入的参数来选择初始化方法，可以通�
         return
     # invalid parameter
     show.printf("input parameter error!", color="red")
-    show.printf("please run <zoomeye init -h> for help.", color="red")
+    show.printf("please run <zoomeyehk init -h> for help.", color="red")
 
 
 def search(args):#进行搜索操作，根据用户输入的搜索条件进行搜索
@@ -91,7 +91,7 @@ def search(args):#进行搜索操作，根据用户输入的搜索条件进行�
     if filters is None and facet is None and stat is None:
         cli_zoom.default_show()
         return
-    show.printf("please run <zoomeye search -h> for help.")
+    show.printf("please run <zoomeyehk search -h> for help.")
 
 
 def info(args):#打印当前用户的身份和本月剩余的数据配额
@@ -157,7 +157,7 @@ def clear_file(args):#清除用户设置和ZoomEye缓存数据
         target_dir = os.path.expanduser(config.ZOOMEYE_CACHE_PATH)
     # user input error
     if target_dir is None:
-        show.printf("Please run <zoomeye clear -h> for help!", color='red')
+        show.printf("Please run <zoomeyehk clear -h> for help!", color='red')
         return
     # remove all files under the folder
     file_list = os.listdir(target_dir)

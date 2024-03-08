@@ -4,7 +4,7 @@
 
 `ZoomEye` 是一款网络空间搜索引擎，用户可以使用浏览器方式 <https://www.zoomeye.hk> 搜索网络设备。
 
-`ZoomEye-python` 是一款基于 `ZoomEye API` 开发的 Python 库，提供了 `ZoomEye` 命令行模式，同时也可以作为 `SDK` 集成到其他工具中。该库可以让技术人员更便捷地**搜索**、**筛选**、**导出** `ZoomEye` 的数据。
+`ZoomEye-python` 是一款基于 `ZoomEye API` 开发的 Python 库，提供了 `zoomeyehk` 命令行模式，同时也可以作为 `SDK` 集成到其他工具中。该库可以让技术人员更便捷地**搜索**、**筛选**、**导出** `ZoomEye` 的数据。
 
 ### 0x01 安装步骤
 可直接从 `pypi` 进行安装：
@@ -93,7 +93,7 @@ total: 1/58277850
 	4.app      识别出的应用类型
 	5.banner   该端口的特征响应报文
 
-在以上演示中，使用 `-num` 参数指定了显示的数量，除此之外，`search` 还支持以下参数(`zoomeye search -h`)，以便用户对数据进行处理，我们将在下文进行说明和演示：
+在以上演示中，使用 `-num` 参数指定了显示的数量，除此之外，`search` 还支持以下参数(`zoomeyehk search -h`)，以便用户对数据进行处理，我们将在下文进行说明和演示：
 
 	-num     设置显示/搜索的数量，支持 all
 	-count   查询该 dork 在 ZoomEye 数据库的总量
@@ -236,7 +236,7 @@ $ cat telnet_1_1610446755.json
 {'ip': '218.223.21.91', 'banner': '\\xff\\xfb\\x01\\xff\\xfb\\x03\\xff\\xfd\\x03TELNET session now in ESTABLISHED state\\r\\n\\r\\n'}
 ```
 
->如果使用 `-save` 但不带任何参数，则会将查询结果按照 `ZoomEye API` 的 json 格式保存成文件，这种方式一般用于在保留元数据的情况下进行整合数据；该文件可以作为输入通过 `cli` 再次解析处理，如 `zoomeye search "xxxxx.json"`。
+>如果使用 `-save` 但不带任何参数，则会将查询结果按照 `ZoomEye API` 的 json 格式保存成文件，这种方式一般用于在保留元数据的情况下进行整合数据；该文件可以作为输入通过 `cli` 再次解析处理，如 `zoomeyehk search "xxxxx.json"`。
 
 #### 8. 数据图像化
 
@@ -440,7 +440,7 @@ total: 30/79882
 使用 `zoomeyehk domain -h` 可以查看 `domain` 提供的参数。
 ```
 $ zoomeyehk domain -h
-usage: zoomeye domain [-h] [-page PAGE] [-dot] q {0,1}
+usage: zoomeyehk domain [-h] [-page PAGE] [-dot] q {0,1}
 
 positional arguments:
   q           search key word(eg:baidu.com)

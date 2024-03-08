@@ -73,7 +73,7 @@ def get_auth_key():
         return api_key
         # catch file not found exception
     except FileNotFoundError:
-        print("please run 'zoomeye init -apikey <api key>' before using this command")
+        print("please run 'zoomeyehk init -apikey <api key>' before using this command")
         exit(0)
         # catch other exceptions
     except Exception:

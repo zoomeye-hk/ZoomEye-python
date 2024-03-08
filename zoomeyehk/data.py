@@ -412,7 +412,7 @@ class CliZoomEye:#处理与ZoomEye搜索相关的功能，如默认显示、过�
                             facets=self.facet
                         )
                     except ValueError:
-                        print("the access token expires, please re-run [zoomeye init] command."
+                        print("the access token expires, please re-run [zoomeyehk init] command."
                               "it is recommended to use API KEY for initialization!")
                         exit(0)
                     self.facet_data = self.zoomeye.facet_data

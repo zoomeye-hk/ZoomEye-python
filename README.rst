@@ -6,7 +6,7 @@ English | `中文文档 <docs/README_CN.md>`_
 network devices using a browser https://www.zoomeye.hk.
 
 ``ZoomEye-python`` is a Python library developed based on the
-``ZoomEye API``. It provides the ``ZoomEye command line`` mode and can
+``ZoomEye API``. It provides the ``zoomeyehk command line`` mode and can
 also be integrated into other tools as an ``SDK``. The library allows
 technicians to **search**, **filter**, and **export** ``ZoomEye`` data
 more conveniently.
@@ -128,7 +128,7 @@ can use these data to understand the target information:
 
 In the above example, the number to be displayed is specified using the
 ``-num`` parameter. in addition, ``search`` also supports the following
-parameters (``zoomeye search -h``) so that users can handle the data. we
+parameters (``zoomeyehk search -h``) so that users can handle the data. we
 will explain and demonstrate below.
 
 ::
@@ -309,7 +309,7 @@ the format of line json, as follows:
    saved as a file according to the json format of ``ZoomEye API``. this
    method is generally used to integrate data while retaining metadata;
    the file can be as input, it is parsed and processed again through
-   ``cli``, such as ``zoomeye search "xxxxx.json"``.
+   ``cli``, such as ``zoomeyehk search "xxxxx.json"``.
 
 
 8.graphical data
@@ -426,7 +426,7 @@ A display of the ``id`` field is added during the display. ``id`` is the serial 
 
 10. search IP information
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-You can query the information of the specified IP through the ``zoomeye ip`` command, for example:
+You can query the information of the specified IP through the ``zoomeyehk ip`` command, for example:
 
 ::
 
@@ -447,7 +447,7 @@ You can query the information of the specified IP through the ``zoomeye ip`` com
     25        smtp           Cisco IOS NetWor...    220 10.1.10.2 Cisco Net...
 
 
-The ``zoomeye ip`` command also supports the filter parameter ``-filter``, and the syntax is the same as that of ``zoomeye search``. E.g:
+The ``zoomeyehk ip`` command also supports the filter parameter ``-filter``, and the syntax is the same as that of ``zoomeyehk search``. E.g:
 
 ::
 
@@ -553,7 +553,7 @@ Use ``zoomeyehk domain -h`` to view parameters provided by the ``domain``.
 ::
 
     $ zoomeyehk domain -h
-    usage: zoomeye domain [-h] [-page PAGE] [-dot] q {0,1}
+    usage: zoomeyehk domain [-h] [-page PAGE] [-dot] q {0,1}
 
     positional arguments:
       q           search key word(eg:baidu.com)
