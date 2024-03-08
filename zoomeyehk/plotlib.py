@@ -14,7 +14,7 @@ import sys
 import math
 import re
 
-from zoomeye import config
+from zoomeyehk import config
 
 
 def char_by_atan(stat, at, color):#用于根据给定的百分比值(at)和颜色(color)，返回相应的字符，用于绘制饼状图的每个部分
@@ -162,11 +162,3 @@ def generate_histogram(values, labels=None, force_ascii=False):#用于生成直�
         out.append(fmt.format(*data))
     for item in out:
         print(' ' + item)
-
-
-
-
-
-
-
-

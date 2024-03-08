@@ -9,7 +9,7 @@
 */
 """
 
-__name__ = 'zoomeye'
-__package__ = 'zoomeye'
+__name__ = 'zoomeyehk'
+__package__ = 'zoomeyehk'
 __version__ = 'v2.2.0'
-__site__ = "https://www.zoomeye.org/doc"
+__site__ = "https://www.zoomeye.hk/doc"

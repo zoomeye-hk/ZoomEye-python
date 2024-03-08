@@ -15,10 +15,10 @@ import os
 import time
 import datetime
 import hashlib
-from zoomeye import config, file
-from zoomeye.sdk import ZoomEye, fields_tables_host, fields_tables_web
-from zoomeye.sdk import ZoomEyeDict
-from zoomeye import show
+from zoomeyehk import config, file
+from zoomeyehk.sdk import ZoomEye, fields_tables_host, fields_tables_web
+from zoomeyehk.sdk import ZoomEyeDict
+from zoomeyehk import show
 
 zoomeye_dir = os.path.expanduser(config.ZOOMEYE_CONFIG_PATH)
 
@@ -315,7 +315,7 @@ class Cache:#用于缓存从API获取的数据或从本地文件中读取数据
             read_data = f.read()
         data_json = json.loads(read_data)
         """
-        process the data loaded from the cache file, 
+        process the data loaded from the cache file,
         the processed data structure is list. like:
         [{...}, {...},{...}...]
         """
@@ -771,7 +771,3 @@ class DomainSearch:#用于查询相关域名或子域名
             show.printf(msg, color='green')
         else:
             show.printf(msg, color='red')
-
-
-
-

@@ -3,7 +3,7 @@ ZoomEye-python
 English | `中文文档 <docs/README_CN.md>`_
 
 ``ZoomEye`` is a cyberspace search engine, users can search for
-network devices using a browser https://www.zoomeye.org.
+network devices using a browser https://www.zoomeye.hk.
 
 ``ZoomEye-python`` is a Python library developed based on the
 ``ZoomEye API``. It provides the ``ZoomEye command line`` mode and can
@@ -20,24 +20,24 @@ It can be installed directly from ``pypi``:
 
 ::
 
-   pip3 install zoomeye
+   pip3 install zoomeyehk
 
 or installed from ``github``:
 
 ::
 
-   pip3 install git+https://github.com/knownsec/ZoomEye-python.git
+   pip3 install git+https://github.com/zoomeye-hk/ZoomEye-python.git
 
 0x02 how to use cli
 ~~~~~~~~~~~~~~~~~~~
 
 After successfully installing ``ZoomEye-python``, you can use the
-``zoomeye`` command directly, as follows:
+``zoomeyehk`` command directly, as follows:
 
 ::
 
-   $ zoomeye -h
-   usage: zoomeye [-h] [-v] {info,search,init,ip,history,clear} ...
+   $ zoomeyehk -h
+   usage: zoomeye-hk [-h] [-v] {info,search,init,ip,history,clear} ...
     positional arguments:
       {info,search,init,ip,history,clear}
         info                Show ZoomEye account info
@@ -59,18 +59,18 @@ Before using the ``ZoomEye-python cli``, the user ``token`` needs to be
 initialized. The credential is used to verify the user’s identity to
 query data from ``ZoomEye``; only support API-KEY authentication methods.
 
-You can view the help through ``zoomeye init -h``, and use ``APIKEY`` to
+You can view the help through ``zoomeyehk init -h``, and use ``APIKEY`` to
 demonstrate below:
 
 ::
 
-   $ zoomeye init -apikey "01234567-acbd-00000-1111-22222222222"
+   $ zoomeyehk init -apikey "01234567-acbd-00000-1111-22222222222"
    successfully initialized
    Role: developer
    Quota: 10000
 
 Users can login to ``ZoomEye`` and obtain ``APIKEY`` in personal
-information (https://www.zoomeye.org/profile); ``APIKEY`` will not
+information (https://www.zoomeye.hk/profile); ``APIKEY`` will not
 expire, users can reset in personal information according to their
 needs.
 
@@ -83,7 +83,7 @@ command, as follows:
 
 ::
 
-   $ zoomeye info
+   $ zoomeyehk info
     user_info: {
         "email": "",
         "name": "",
@@ -108,8 +108,8 @@ search keyword (``dork``), let's perform a simple search below:
 
 ::
 
-   $ zoomeye search "telnet" -num 1
-   ip:port       service  country  app                 banner                        
+   $ zoomeyehk search "telnet" -num 1
+   ip:port       service  country  app                 banner
    222.*.*.*:23  telnet   Japan    Pocket CMD telnetd  \xff\xfb\x01\xff\xfb\x03\xff\x...
 
    total: 1
@@ -152,7 +152,7 @@ the ``-count`` parameter, as follows:
 
 ::
 
-   $ zoomeye search "telnet" -count
+   $ zoomeyehk search "telnet" -count
    56903258
 
 ..
@@ -172,7 +172,7 @@ two commands include:
 
 ::
 
-    # host searhc
+    # host search
     app      statistics by application type
     device   statistics by device type
     service  statistics by service type
@@ -194,7 +194,7 @@ use ``-facet`` to count the application types of all ``telnet`` devices:
 
 ::
 
-   $ zoomeye search "telnet" -facet app
+   $ zoomeyehk search "telnet" -facet app
    app                                count
    [unknown]                          28317914
    BusyBox telnetd                    10176313
@@ -212,8 +212,8 @@ devices:
 
 ::
 
-   $ zoomeye search "telnet" -stat app
-   app                                count               
+   $ zoomeyehk search "telnet" -stat app
+   app                                count
    Cisco IOS telnetd                  7
    [unknown]                          5
    BusyBox telnetd                    4
@@ -265,8 +265,8 @@ viewed through ``-filter``, as follows:
 
 ::
 
-   $ zoomeye search "telnet" -num 1 -filter banner
-   ip         banner                        
+   $ zoomeyehk search "telnet" -num 1 -filter banner
+   ip         banner
    222.*.*.*  \xff\xfb\x01\xff\xfb\x03\xff\xfd\x03TELNET session now in ESTABLISHED state\r\n\r\n
 
    total: 1
@@ -275,7 +275,7 @@ When using ``-filter`` to filter, the syntax is: ``key1,key2,key3=value``, where
 
 ::
 
-   $ zoomeye search telnet -num 1 -filter port,app,banner=Telnet
+   $ zoomeyehk search telnet -num 1 -filter port,app,banner=Telnet
 
     ip                        port                          app
     240e:*:*:*::3             23                            LANDesk remote management
@@ -284,7 +284,7 @@ In the above example: ``banner=Telnet`` is the filter condition, and ``port,app`
 
 ::
 
-    $ zoomeye search telnet -num 1 -filter port,app,banner,banner=Telnet
+    $ zoomeyehk search telnet -num 1 -filter port,app,banner,banner=Telnet
 
 
 
@@ -297,7 +297,7 @@ the format of line json, as follows:
 
 ::
 
-   $ zoomeye search "telnet" -save banner=telnet
+   $ zoomeyehk search "telnet" -save banner=telnet
    save file to telnet_1_1610446755.json successful!
 
    $ cat telnet_1_1610446755.json
@@ -317,18 +317,18 @@ the format of line json, as follows:
 
 The ``-figure`` parameter is a data visualization parameter. This parameter provides two display methods: ``pie (pie chart)`` and ``hist (histogram)``. The data will still be displayed without specifying it. When ``-figure`` is specified , Only graphics will be displayed. The pie chart is as follows:
 
-.. figure:: https://raw.githubusercontent.com/knownsec/ZoomEye-python/master/images/image-20210205004653480.png
+.. figure:: https://raw.githubusercontent.com/zoomeye-hk/ZoomEye-python/master/images/image-20210205004653480.png
     :width: 500px
 
-.. figure:: https://raw.githubusercontent.com/knownsec/ZoomEye-python/master/images/image-20210205005016399.png
+.. figure:: https://raw.githubusercontent.com/zoomeye-hk/ZoomEye-python/master/images/image-20210205005016399.png
     :width: 500px
 
 The histogram is as follows:
 
-.. figure:: https://raw.githubusercontent.com/knownsec/ZoomEye-python/master/images/image-20210205004806739.png
+.. figure:: https://raw.githubusercontent.com/zoomeye-hk/ZoomEye-python/master/images/image-20210205004806739.png
     :width: 500px
 
-.. figure:: https://raw.githubusercontent.com/knownsec/ZoomEye-python/master/images/image-20210205005117712.png
+.. figure:: https://raw.githubusercontent.com/zoomeye-hk/ZoomEye-python/master/images/image-20210205005117712.png
     :width: 500px
 
 
@@ -339,7 +339,7 @@ The histogram is as follows:
 
 ::
 
-    $zoomeye history "207.xx.xx.13" -num 1
+    $zoomeyehk history "207.xx.xx.13" -num 1
     207.xx.xx.13
     Hostnames:                    [unknown]
     Country:                      United States
@@ -365,13 +365,13 @@ By default, five fields are shown to users:
     5. raw      fingerprint information
 
 
-Use ``zoomeye history -h`` to view the parameters provided by ``history``.
+Use ``zoomeyehk history -h`` to view the parameters provided by ``history``.
 
 ::
 
-    $zoomeye history -h
+    $ zoomeyehk history -h
 
-    usage: zoomeye history [-h] [-filter filed=regexp] [-force] ip
+    usage: zoomeyehk history [-h] [-filter filed=regexp] [-force] ip
 
     positional arguments:
       ip                    search historical device IP
@@ -388,7 +388,7 @@ The following is a demonstration of ``-filter``:
 
 ::
 
-    $zoomeye history "207.xx.xx.13" -filter "time=^2019-08,port,service"
+    $zoomeyehk history "207.xx.xx.13" -filter "time=^2019-08,port,service"
     207.xx.xx.13
     Hostnames:                    [unknown]
     Country:                      United States
@@ -430,7 +430,7 @@ You can query the information of the specified IP through the ``zoomeye ip`` com
 
 ::
 
-    $ zoomeye ip 185.*.*.57
+    $ zoomeyehk ip 185.*.*.57
     185.*.*.57
     Hostnames:                    [unknown]
     Isp:                          [unknown]
@@ -451,7 +451,7 @@ The ``zoomeye ip`` command also supports the filter parameter ``-filter``, and t
 
 ::
 
-    $ zoomeye ip "185.*.*.57" -filter "app,app=ntpd"
+    $ zoomeyehk ip "185.*.*.57" -filter "app,app=ntpd"
     Hostnames:                    [unknown]
     Isp:                          [unknown]
     Country:                      Saudi Arabia
@@ -492,12 +492,12 @@ The fields supported by the ``filter`` parameter are:
 ^^^^^^^^^^^^^^^^^^^^
 
 Users search for a large amount of data every day, which causes the storage space occupied by the cache folder to gradually increase; if users use ``ZoomEye-python`` on a public server, it may cause their own ``API KEY`` and ``ACCESS TOKEN`` to leak .
-For this reason, ``ZoomEye-python`` provides the clear command ``zoomeye clear``, which can clear the cached data and user configuration. The usage is as follows:
+For this reason, ``ZoomEye-python`` provides the clear command ``zoomeyehk clear``, which can clear the cached data and user configuration. The usage is as follows:
 
 ::
 
-    $zoomeye clear -h
-    usage: zoomeye clear [-h] [-setting] [-cache]
+    $ zoomeyehk clear -h
+    usage: zoomeyehk clear [-h] [-setting] [-cache]
 
     optional arguments:
       -h, --help  show this help message and exit
@@ -509,7 +509,7 @@ For this reason, ``ZoomEye-python`` provides the clear command ``zoomeye clear``
 ^^^^^^^^^^^^^
 
 ``ZoomEye-python`` provides a caching in ``cli`` mode, which is located
-under ``~/.config/zoomeye/cache`` to save user quota as much as
+under ``~/.config/zoomeyehk/cache`` to save user quota as much as
 possible; the data set that the user has queried will be cached locally
 for 5 days. when users query the same data set, quotas are not consumed.
 
@@ -522,7 +522,7 @@ for 5 days. when users query the same data set, quotas are not consumed.
 
 ::
 
-    $ python cli.py domain baidu.com 0
+    $ zoomeyehk domain baidu.com 0
     name                                                   timestamp      ip
     zszelle.baidu30a72.bf.3dtops.com                       2021-06-27     204.11.56.48
     zpvpcxa.baidu.3dtops.com                               2021-06-27     204.11.56.48
@@ -547,12 +547,12 @@ By default, the user is presented with three more important fields:
 
 
 
-Use ``zoomeye domain -h`` to view parameters provided by the ``domain``.
+Use ``zoomeyehk domain -h`` to view parameters provided by the ``domain``.
 
 
 ::
 
-    $ python cli.py domain -h
+    $ zoomeyehk domain -h
     usage: zoomeye domain [-h] [-page PAGE] [-dot] q {0,1}
 
     positional arguments:
@@ -571,7 +571,7 @@ The following is a demonstration of ``-page`` :(default query for the first page
 
 ::
 
-    $ python cli.py domain baidu.com 0 -page 3
+    $ zoomeyehk domain baidu.com 0 -page 3
     name                                                   timestamp      ip
     zvptcfua.baidu6c7be.mm.3dtops.com                      2021-06-27     204.11.56.48
     zmukxtd.baidu65c78.iw.3dtops.com                       2021-06-27     204.11.56.48
@@ -621,7 +621,7 @@ Similarly, the SDK also supports API-KEY authentication methods,
 
 .. code:: python
 
-   from zoomeye.sdk import ZoomEye
+   from zoomeyehk.sdk import ZoomEye
 
    zm = ZoomEye(api_key="01234567-acbd-00000-1111-22222222222")
 
@@ -659,7 +659,7 @@ The following are the interfaces and instructions provided by the SDK:
 .. code:: python
 
    $ python3
-   >>> import zoomeye.sdk as zoomeye
+   >>> import zoomeyehk.sdk as zoomeye
    >>> dir(zoomeye)
    ['ZoomEye', 'ZoomEyeDict', '__builtins__', '__cached__', '__doc__',
    '__file__', '__loader__', '__name__', '__package__', '__spec__',
@@ -742,17 +742,17 @@ data more conveniently and extract the specified data fields as follows:
   or specify to search for only 1 piece of data, there will be an
   overhead of 20 pieces; of course, in the cli, we provide a cache, the
   data that has been searched is cached locally
-  (``~/.config/zoomeye/cache``), and the validity period is 5 days,
+  (``~/.config/zoomeyehk/cache``), and the validity period is 5 days,
   which can greatly save quota.
 
 | **2.How to enter dork with quotes?**
 | When using cli to search, you will encounter dork with quotes, for example: ``"<body style=\"margin:0;padding:0\"> <p align=\"center\"> <iframe src=\ "index.xhtml\""``, when dork contains quotation marks or multiple quotation marks, the outermost layer of dork must be wrapped in quotation marks to indicate a parameter as a whole, otherwise command line parameter parsing will cause problems. Then the correct search method for the following dork should be: ``'"<body style=\"margin:0;padding:0\"> <p align=\"center\"> <iframe src=\"index.xhtml\" "'``.
 
-.. figure:: https://raw.githubusercontent.com/knownsec/ZoomEye-python/master/images/image-20210205131713799.png
+.. figure:: https://raw.githubusercontent.com/zoomeye-hk/ZoomEye-python/master/images/image-20210205131713799.png
     :width: 500px
 
 
-.. figure:: https://raw.githubusercontent.com/knownsec/ZoomEye-python/master/images/image-20210205131802799.png
+.. figure:: https://raw.githubusercontent.com/zoomeye-hk/ZoomEye-python/master/images/image-20210205131802799.png
     :width: 500px
 
 
@@ -768,24 +768,24 @@ data more conveniently and extract the specified data fields as follows:
   time, ``ZoomEye`` periodically scans and updates the data, resulting
   in the above data inconsistency, so cli will use the newer statistical
   results.
-  
-.. figure:: https://raw.githubusercontent.com/knownsec/ZoomEye-python/master/images/image-20210111111035187.png
+
+.. figure:: https://raw.githubusercontent.com/zoomeye-hk/ZoomEye-python/master/images/image-20210111111035187.png
     :width: 500px
 
 | **4.Why may the total amount of data in ZoomEye-python and the browser
   search the same dork be different?**
 | ``ZoomEye`` provides two search interfaces: ``/host/search`` and ``/web/search``. In ``ZoomEye-python``, only ``/host/search`` is used by default, and ``/web/search`` is not used. Users can choose the search method according to their needs by specifying the ``type`` parameter.
 
-.. figure:: https://raw.githubusercontent.com/knownsec/ZoomEye-python/master/images/image-20210111141028072.png
+.. figure:: https://raw.githubusercontent.com/zoomeye-hk/ZoomEye-python/master/images/image-20210111141028072.png
     :width: 500px
 
-.. figure:: https://raw.githubusercontent.com/knownsec/ZoomEye-python/master/images/image-20210111141114558.png
+.. figure:: https://raw.githubusercontent.com/zoomeye-hk/ZoomEye-python/master/images/image-20210111141114558.png
     :width: 500px
 
 | **5.The quota information obtained by the info command may be
   inconsistent with the browser side?**
 | The browser side displays the free quota and recharge quota
-  (https://www.zoomeye.org/profile/record), but only the free quota
+  (https://www.zoomeye.hk/profile/record), but only the free quota
   information is displayed in ``ZoomEye-python``, we will fix it in the
   subsequent version This question.
 
@@ -804,30 +804,10 @@ partner, you can refer to The way to join the group of Starlink Project.
 --------------
 
 | References:
-| https://www.zoomeye.org/doc
+| https://www.zoomeye.hk/doc
 
 | knownsec 404
 | Time: 2021.01.12
 
 .. |asciicast| image:: https://asciinema.org/a/qyDaJw9qQc7UjffD04HzMApWa.svg
    :target: https://asciinema.org/a/qyDaJw9qQc7UjffD04HzMApWa
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-* Filename: zoomeye.py
+* Filename: sdk.py
 * Description:
 * Time: 2020.11.25
 * Author: liuf5
@@ -96,10 +96,10 @@ class ZoomEye:
         self.search_type = None
         self.facet_data = None
 
-        self.login_api = "https://api.zoomeye.org/user/login"
-        self.search_api = "https://api.zoomeye.org/{}/search"
-        self.user_info_api = "https://api.zoomeye.org/resources-info"
-        self.history_api = "https://api.zoomeye.org/both/search?history=true&ip={}"
+        self.login_api = "https://api.zoomeye.hk/user/login"
+        self.search_api = "https://api.zoomeye.hk/{}/search"
+        self.user_info_api = "https://api.zoomeye.hk/resources-info"
+        self.history_api = "https://api.zoomeye.hk/both/search?history=true&ip={}"
 
     def _request(self, url, params=None, headers=None, method='GET'):
         """
@@ -151,7 +151,7 @@ class ZoomEye:
         Search records with ZoomEye dorks.
         param: dork
                ex: country:cn
-               access https://www.zoomeye.org/search/dorks for more details.
+               access https://www.zoomeye.hk/search/dorks for more details.
         param: page
                total page(s) number
         param: resource
@@ -182,9 +182,9 @@ class ZoomEye:
     def multi_page_search(self, dork, page=1, start_page=1, resource="host",
                           facets=None) -> (list, int, str):
         """
-        mainly used to search dork data from zoomeye data.
-        please see: https://www.zoomeye.org/doc#host-search and
-                    https://www.zoomeye.org/doc#web-search
+        mainly used to search dork data from zoomeyehk data.
+        please see: https://www.zoomeye.hk/doc#host-search and
+                    https://www.zoomeye.hk/doc#web-search
         :param dork:str,
                     ex:apache:cn
                     dork to search
@@ -247,7 +247,7 @@ class ZoomEye:
     def resources_info(self) -> dict:
         """
         account resource information, resource limit and package type
-        see: https://www.zoomeye.org/doc#resources-info
+        see: https://www.zoomeye.hk/doc#resources-info
         :return: dict
         """
         headers = self._check_header()
@@ -297,7 +297,7 @@ class ZoomEye:
     def history_ip(self, ip):
         """
         Query IP History Information.
-        see: https://www.zoomeye.org/doc#history-data
+        see: https://www.zoomeye.hk/doc#history-data
         param: ip
         """
         result = {}

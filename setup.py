@@ -11,24 +11,24 @@
 """
 from setuptools import setup
 
-from zoomeye import __version__
+from zoomeyehk import __version__
 
 
 DEPENDENCIES = open('requirements.txt', 'r', encoding='utf-8').read().split('\n')
 README = open('README.rst', 'r', encoding='utf-8').read()
 
 setup(
-    name='zoomeye',
+    name='zoomeyehk',
     version=__version__,
-    description='Python library and command-line tool for ZoomEye (https://www.zoomeye.org/doc)',
+    description='Python library and command-line tool for ZoomEye.HK (https://www.zoomeye.hk/doc)',
     long_description=README,
     long_description_content_type='text/x-rst',
-    author='404 Team@Knownsec',
-    url='https://github.com/knownsec/zoomeye-python',  #
-    packages=['zoomeye'],
-    entry_points={'console_scripts': ['zoomeye=zoomeye.cli:main']},
+    author='ZoomEye.HK',
+    url='https://github.com/zoomeye-hk/zoomeye-python',  #
+    packages=['zoomeyehk'],
+    entry_points={'console_scripts': ['zoomeyehk=zoomeyehk.cli:main']},
     install_requires=DEPENDENCIES,
-    keywords=['security tool', 'zoomeye', 'command tool'],
+    keywords=['security tool', 'zoomeye', 'zoomeyehk', 'command tool'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',

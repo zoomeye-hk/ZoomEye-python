@@ -8,8 +8,8 @@
 import re
 import operator
 from colorama import init
-from zoomeye import config, data, plotlib
-from zoomeye.sdk import ZoomEyeDict
+from zoomeyehk import config, data, plotlib
+from zoomeyehk.sdk import ZoomEyeDict
 import json
 
 # solve the color display error under windows terminal
@@ -328,7 +328,7 @@ def print_filter_history(fileds, hist_data, condition=None):
     """
     print user filter history data,
     :param fileds list,user input field
-    :param hist_data dict, from ZoomEye API get data
+    :param hist_data dict, from zoomeyehk API get data
     :param condition list, filter condition
     """
     filter_title = ''
@@ -445,7 +445,3 @@ def show_domain_info(information_list, total, page):
         printf("{:<55}{:<15}{:<25}".format(name, timestamp, json.dumps(ip)))
     print()
     printf("total: {}/{}".format(str(30 * int(page)), total))
-
-
-
-

@@ -8,9 +8,9 @@
 
 import re
 import os
-from zoomeye import config, file, show
-from zoomeye.sdk import ZoomEye
-from zoomeye.data import CliZoomEye, HistoryDevice, IPInformation, DomainSearch
+from zoomeyehk import config, file, show
+from zoomeyehk.sdk import ZoomEye
+from zoomeyehk.data import CliZoomEye, HistoryDevice, IPInformation, DomainSearch
 
 # save zoomeye config folder
 zoomeye_dir = os.path.expanduser(config.ZOOMEYE_CONFIG_PATH)
@@ -115,7 +115,7 @@ def info(args):#打印当前用户的身份和本月剩余的数据配额
 def ip_history(args):#查询设备的历史信息
     """
     query device history
-    please see: https://www.zoomeye.org/doc#history-ip-search
+    please see: https://www.zoomeye.hk/doc#history-ip-search
     :param args:
     :return:
     """
@@ -198,4 +198,3 @@ def associated_domain_query(args):#关联域名查询
         # show information for user
         DomainSearch(q, resource, page).show_information()
     return None
-

@@ -16,8 +16,8 @@ import argparse
 module_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 sys.path.insert(1, module_path)
 
-from zoomeye import core
-from zoomeye.config import BANNER
+from zoomeyehk import core
+from zoomeyehk.config import BANNER
 
 
 def get_version():
@@ -36,7 +36,7 @@ def main():
     :return:
     """
 
-    parser = ZoomEyeParser(prog='zoomeye')
+    parser = ZoomEyeParser(prog='zoomeyehk')
     subparsers = parser.add_subparsers()
     # show ZoomEye-python version number
     parser.add_argument(
@@ -133,7 +133,7 @@ def main():
         "-type",
         help=(
             """
-            Select web search or host search(default host) 
+            Select web search or host search(default host)
             """
         ),
         choices={'web', 'host'},

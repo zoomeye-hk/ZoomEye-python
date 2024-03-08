@@ -11,7 +11,7 @@
 """
 import os
 
-from zoomeye import config
+from zoomeyehk import config
 
 zoomeye_dir = os.path.expanduser(config.ZOOMEYE_CONFIG_PATH)
 

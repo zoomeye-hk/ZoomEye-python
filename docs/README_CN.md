@@ -2,26 +2,26 @@
 
 [English](../README.rst)｜中文文档
 
-`ZoomEye` 是一款网络空间搜索引擎，用户可以使用浏览器方式 <https://www.zoomeye.org> 搜索网络设备。
+`ZoomEye` 是一款网络空间搜索引擎，用户可以使用浏览器方式 <https://www.zoomeye.hk> 搜索网络设备。
 
 `ZoomEye-python` 是一款基于 `ZoomEye API` 开发的 Python 库，提供了 `ZoomEye` 命令行模式，同时也可以作为 `SDK` 集成到其他工具中。该库可以让技术人员更便捷地**搜索**、**筛选**、**导出** `ZoomEye` 的数据。
 
 ### 0x01 安装步骤
 可直接从 `pypi` 进行安装：
 
-	pip3 install zoomeye
+	pip3 install zoomeyehk
 
 也可以通过 `github` 进行安装：
 
-	pip3 install git+https://github.com/knownsec/ZoomEye-python.git
+	pip3 install git+https://github.com/zoomeye-hk/ZoomEye-python.git
 
 
 ### 0x02 使用cli
-在成功安装 `ZoomEye-python` 后，可以直接使用 `zoomeye` 命令，如下：
+在成功安装 `ZoomEye-python` 后，可以直接使用 `zoomeyehk` 命令，如下：
 
 ```
-$ zoomeye -h
-usage: zoomeye [-h] [-v] {info,search,init,ip,history,clear} ...
+$ zoomeyehk -h
+usage: zoomeyehk [-h] [-v] {info,search,init,ip,history,clear} ...
 
 positional arguments:
   {info,search,init,ip,history,clear}
@@ -41,23 +41,23 @@ optional arguments:
 #### 1.初始化token
 在使用 `ZoomEye-python cli` 前需要先初始化用户 `token`，该凭证用于验证用户身份以便从 `ZoomEye` 查询数据；仅支持 API-KEY 认证。
 
-可以通过 `zoomeye init -h` 查看帮助，下面通过 `APIKEY` 来进行演示：
+可以通过 `zoomeyehk init -h` 查看帮助，下面通过 `APIKEY` 来进行演示：
 
 ```
-$ zoomeye init -apikey "01234567-acbd-00000-1111-22222222222"
+$ zoomeyehk init -apikey "01234567-acbd-00000-1111-22222222222"
 successfully initialized
 Role: developer
 Quota: 10000
 ```
 
-用户可以通过登陆 `ZoomEye` 在个人信息中(<https://www.zoomeye.org/profile>) 获取 `APIKEY`；`APIKEY` 不会过期，用户可根据需求在个人信息中进行重置。
+用户可以通过登陆 `ZoomEye` 在个人信息中(<https://www.zoomeye.hk/profile>) 获取 `APIKEY`；`APIKEY` 不会过期，用户可根据需求在个人信息中进行重置。
 
 
 #### 2.查询配额
 用户可以通过 `info` 命令查询个人信息以及数据配额，如下：
 
 ```
-$ zoomeye info
+$ zoomeyehk info
 user_info: {
     "email": "",  # 用户邮箱
     "name": "",  # 用户名
@@ -78,8 +78,8 @@ quota: {
 搜索是 `ZoomEye-python` 最核心的功能，通过 `search` 命令进行使用。`search` 命令需要指定搜索关键词(`dork`)，下面我们进行简单的搜索：
 
 ```
-$ zoomeye search "telnet" -num 1
-ip:port       service  country  app                 banner                        
+$ zoomeyehk search "telnet" -num 1
+ip:port       service  country  app                 banner
 222.*.*.*:23  telnet   Japan    Pocket CMD telnetd  \xff\xfb\x01\xff\xfb\x03\xff\x...
 
 total: 1/58277850
@@ -108,7 +108,7 @@ total: 1/58277850
 通过 `-num` 参数可以指定我们搜索和显示的数量，指定的数目即消耗的配额数量。而通过 `-count` 参数可以查询该 `dork` 在 ZoomEye 数据库的总量，如下：
 
 ```
-$ zoomeye search "telnet" -count
+$ zoomeyehk search "telnet" -count
 56903258
 ```
 
@@ -116,8 +116,8 @@ $ zoomeye search "telnet" -count
 
 #### 5.数据聚合
 我们可以通过 `-facet` 和 `-stat` 进行数据的聚合统计，使用 `-facet` 可以查询该 dork 全量数据的聚合情况(由 `ZoomEye` 聚合统计后通过 `API` 获取)，而 `-stat` 可以对查询到的结果集进行聚合统计。两个命令支持的聚合字段包括：
-    
-    # host search 
+
+    # host search
     app      按应用类型进行统计
     device   按设备类型进行统计
     service  按照服务类型进行统计
@@ -125,7 +125,7 @@ $ zoomeye search "telnet" -count
     port     按照端口进行统计
     country  按照国家进行统计
     city     按照城市进行统计
-    
+
     # web search
     webapp      按照 Web 应用进行统计
     component   按照 Web 容器进行统计
@@ -138,7 +138,7 @@ $ zoomeye search "telnet" -count
 使用 `-facet` 统计全量 `telnet` 设备的应用类型：
 
 ```
-$ zoomeye search "telnet" -facet app
+$ zoomeyehk search "telnet" -facet app
 app                                count
 [unknown]                          28317914
 BusyBox telnetd                    10176313
@@ -155,8 +155,8 @@ NASLite-SMB/Sveasoft Alc...        491957
 使用 `-stat` 统计查询出来的 20 条 `telnet` 设备的应用类型：
 
 ```
-$ zoomeye search "telnet" -stat app
-app                                count               
+$ zoomeyehk search "telnet" -stat app
+app                                count
 Cisco IOS telnetd                  7
 [unknown]                          5
 BusyBox telnetd                    4
@@ -179,7 +179,7 @@ Pocket CMD telnetd                 1
     banner       显示特征响应报文详情
     timestamp    显示数据更新时间
     *            在包含该符号时，显示所有字段详情
-    
+
     # web/search
     app         显示应用类型详情
     headers     HTTP 头
@@ -201,8 +201,8 @@ Pocket CMD telnetd                 1
 相比较默认情况下的省略显示，所以通过 `-filter` 可以查看完整的数据，如下：
 
 ```
-$ zoomeye search "telnet" -num 1 -filter banner
-ip         banner                        
+$ zoomeyehk search "telnet" -num 1 -filter banner
+ip         banner
 222.*.*.*  \xff\xfb\x01\xff\xfb\x03\xff\xfd\x03TELNET session now in ESTABLISHED state\r\n\r\n
 
 total: 1
@@ -210,10 +210,10 @@ total: 1
 
 使用 `-filter` 进行筛选时，语法为：`key1,key2,key3=value`，其中 `key3=value` 为筛选条件，而展示的内容为 `key1,key2` 例：
 ```
-$ zoomeye search telnet -num 1 -filter port,app,banner=Telnet
+$ zoomeyehk search telnet -num 1 -filter port,app,banner=Telnet
 
-ip                        port                          app                           
-240e:*:*:*::3             23                            LANDesk remote management     
+ip                        port                          app
+240e:*:*:*::3             23                            LANDesk remote management
 
 total: 1
 ```
@@ -221,7 +221,7 @@ total: 1
 在上面的示例中：`banner=Telnet` 为筛选的条件，而 `port,app` 为展示的内容。如果需要展示 `banner`，筛选语句则是这样
 
 ```
-$ zoomeye search telnet -num 1 -filter port,app,banner,banner=Telnet
+$ zoomeyehk search telnet -num 1 -filter port,app,banner,banner=Telnet
 ```
 
 
@@ -229,7 +229,7 @@ $ zoomeye search telnet -num 1 -filter port,app,banner,banner=Telnet
 `-save` 参数可以对数据进行导出，该参数的语法和 `-filter` 一样，并将结果按行 json 的格式保存到文件中，如下：
 
 ```
-$ zoomeye search "telnet" -save banner=telnet
+$ zoomeyehk search "telnet" -save banner=telnet
 save file to telnet_1_1610446755.json successful!
 
 $ cat telnet_1_1610446755.json
@@ -259,7 +259,7 @@ $ cat telnet_1_1610446755.json
 `ZoomEye-python` 提供了 IP 历史设备数据查询功能，使用命令 `history [ip]` 便能查询 IP 设备历史数据，使用方式如下：
 
 ```
-$zoomeye history "207.xx.xx.13" -num 1
+$zoomeyehk history "207.xx.xx.13" -num 1
 207.xx.xx.13
 Hostnames:                    [unknown]
 Country:                      United States
@@ -269,7 +269,7 @@ Lastupdated:                  2021-02-18T03:44:06
 Number of open ports:         1
 Number of historical probes:  1
 
-timestamp                  port/service               app                        raw_data                   
+timestamp                  port/service               app                        raw_data
 2021-02-18 03:44:06        80/http                    Apache httpd               HTTP/1.0 301 Moved Permanently...
 ```
 
@@ -280,15 +280,15 @@ timestamp                  port/service               app                       
 2. service	开放的服务
 3. port		端口
 4. app  	Web 应用
-5. banner   原始的指纹信息 
+5. banner   原始的指纹信息
 ```
 
-使用 `zoomeye history -h`  可以查看 `history` 提供的参数。
+使用 `zoomeyehk history -h`  可以查看 `history` 提供的参数。
 
 ```
-$zoomeye history -h
+$ zoomeyehk history -h
 
-usage: zoomeye history [-h] [-filter filed=regexp] [-force] ip
+usage: zoomeyehk history [-h] [-filter filed=regexp] [-force] ip
 
 positional arguments:
   ip                    search historical device IP
@@ -304,7 +304,7 @@ optional arguments:
 下面对 `-filter` 进行演示：
 
 ```
-$zoomeye history "207.xx.xx.13" -filter "time=^2019-08,port,service"
+$ zoomeyehk history "207.xx.xx.13" -filter "time=^2019-08,port,service"
 207.xx.xx.13
 Hostnames:                    [unknown]
 Country:                      United States
@@ -314,10 +314,10 @@ Lastupdated:                  2019-08-16T10:53:46
 Number of open ports:         3
 Number of historical probes:  3
 
-time                       port                       service                    
-2019-08-16 10:53:46        389                        ldap                       
-2019-08-08 23:32:30        22                         ssh                        
-2019-08-03 01:55:59        80                         http 
+time                       port                       service
+2019-08-16 10:53:46        389                        ldap
+2019-08-08 23:32:30        22                         ssh
+2019-08-03 01:55:59        80                         http
 ```
 
 `-filter` 参数支持以下五个字段的筛选：
@@ -334,14 +334,14 @@ time                       port                       service
 
 在展示时添加了一个 `id` 字段的展示，`id` 为序号，为了方便查看，并不能作为筛选的字段。
 
-> 注意：目前只开放了上述五个字段的筛选。   
+> 注意：目前只开放了上述五个字段的筛选。
 > 使用 `history` 命令时同样会消耗用户配额，在 `history` 命令中返回多少条数据，用户配额就相应扣除多少。例如：IP "8.8.8.8" 共有 944 条历史记录，查询一次扣除 944 的用户配额。
 
 
 #### 10.查询 IP 信息
-可以通过 `zoomeye ip` 命令查询指定 IP 的信息，例如：
+可以通过 `zoomeyehk ip` 命令查询指定 IP 的信息，例如：
 ```
-$ zoomeye ip 185.*.*.57
+$ zoomeyehk ip 185.*.*.57
 185.*.*.57
 Hostnames:                    [unknown]
 Isp:                          [unknown]
@@ -351,16 +351,16 @@ Organization:                 [unknown]
 Lastupdated:                  2021-03-02T11:14:33
 Number of open ports:         4{2002, 9002, 123, 25}
 
-port      service        app                    banner                        
-9002      telnet                                \xff\xfb\x01\xff\xfb\x0...    
-123       ntp            ntpd                   \x16\x82\x00\x01\x05\x0...    
-2002      telnet         Pocket CMD telnetd     \xff\xfb\x01\xff\xfb\x0...    
-25        smtp           Cisco IOS NetWor...    220 10.1.10.2 Cisco Net...   
+port      service        app                    banner
+9002      telnet                                \xff\xfb\x01\xff\xfb\x0...
+123       ntp            ntpd                   \x16\x82\x00\x01\x05\x0...
+2002      telnet         Pocket CMD telnetd     \xff\xfb\x01\xff\xfb\x0...
+25        smtp           Cisco IOS NetWor...    220 10.1.10.2 Cisco Net...
 ```
 
-`zoomeye ip` 命令同样支持筛选参数 `-filter`, 语法和 `zoomeye search` 的筛选语法一致。例如：
+`zoomeyehk ip` 命令同样支持筛选参数 `-filter`, 语法和 `zoomeyehk search` 的筛选语法一致。例如：
 ```
-$ zoomeye ip "185.*.*.57" -filter "app,app=ntpd"
+$ zoomeyehk ip "185.*.*.57" -filter "app,app=ntpd"
 Hostnames:                    [unknown]
 Isp:                          [unknown]
 Country:                      Saudi Arabia
@@ -370,8 +370,8 @@ Lastupdated:                  2021-02-17T02:15:06
 Number of open ports:         0
 Number of historical probes:  1
 
-app                        
-ntpd              
+app
+ntpd
 ```
 
 `filter` 参数支持的字段有:
@@ -386,21 +386,21 @@ ntpd
 > 注意：此功能根据不同用户等级，对每个用户每天查询次数做了一定的限制。
 >
 > **注册用户和开发者每天能够查询 10 次**
-> 
+>
 > **高级用户每天可查询 20 次**
-> 
+>
 > **VIP 用户每天可以查询 30 次**
-> 
+>
 > 每天的次数使用完之后，24小时后刷新，即从第一次查 IP 的时间开始计算，24小时后刷新次数。
 
 
 #### 11.清理功能
 用户每天都会搜索大量的数据，这样就导致缓存文件夹所占的存储空间逐渐增大；如果用户在公共服务器上使用 `ZoomEye-python` 可能会导致自己的 `API KEY` 和 `ACCESS TOKEN` 泄漏。
-为此 `ZoomEye-python` 提供了清理命令 `zoomeye clear`，清理命令可以缓存数据和用户配置进行清空。使用方式如下：
+为此 `ZoomEye-python` 提供了清理命令 `zoomeyehk clear`，清理命令可以缓存数据和用户配置进行清空。使用方式如下：
 
 ```
-$zoomeye clear -h
-usage: zoomeye clear [-h] [-setting] [-cache]
+$ zoomeyehk clear -h
+usage: zoomeyehk clear [-h] [-setting] [-cache]
 
 optional arguments:
   -h, --help  show this help message and exit
@@ -411,13 +411,13 @@ optional arguments:
 
 #### 12.缓存机制
 
-`ZoomEye-python` 在 `cli` 模式下提供了缓存机制，位于 `~/.config/zoomeye/cache` 下，尽可能的节约用户配额；用户查询过的数据集将在本地缓存 5 天，当用户查询相同的数据集时，不会消耗配额。
+`ZoomEye-python` 在 `cli` 模式下提供了缓存机制，位于 `~/.config/zoomeyehk/cache` 下，尽可能的节约用户配额；用户查询过的数据集将在本地缓存 5 天，当用户查询相同的数据集时，不会消耗配额。
 
 #### 13.域名查询
 `ZoomEye-python` 提供了域名查询功能(包括关联域名查询和子域名查询功能), 使用命令 `domain [域名] [查询类型]` 便能进行域名查询，使用方式如下：
 
 ```
-$ python cli.py domain baidu.com 0
+$ zoomeyehk domain baidu.com 0
 name                                                   timestamp      ip
 zszelle.baidu30a72.bf.3dtops.com                       2021-06-27     204.11.56.48
 zpvpcxa.baidu.3dtops.com                               2021-06-27     204.11.56.48
@@ -437,9 +437,9 @@ total: 30/79882
 3. ip               ip地址
 ```
 
-使用 `zoomeye domain -h` 可以查看 `domain` 提供的参数。
+使用 `zoomeyehk domain -h` 可以查看 `domain` 提供的参数。
 ```
-$ python cli.py domain -h
+$ zoomeyehk domain -h
 usage: zoomeye domain [-h] [-page PAGE] [-dot] q {0,1}
 
 positional arguments:
@@ -455,7 +455,7 @@ optional arguments:
 下面对 `-page` 进行演示：(不指定时默认查询第一页)
 
 ```
-$ python cli.py domain baidu.com 0 -page 3
+$ zoomeyehk domain baidu.com 0 -page 3
 name                                                   timestamp      ip
 zvptcfua.baidu6c7be.mm.3dtops.com                      2021-06-27     204.11.56.48
 zmukxtd.baidu65c78.iw.3dtops.com                       2021-06-27     204.11.56.48
@@ -496,7 +496,7 @@ total: 90/79882
 **APIKEY**
 
 ```python
-from zoomeye.sdk import ZoomEye
+from zoomeyehk.sdk import ZoomEye
 
 zm = ZoomEye(api_key="01234567-acbd-00000-1111-22222222222")
 ```
@@ -529,7 +529,7 @@ zm = ZoomEye(api_key="01234567-acbd-00000-1111-22222222222")
 
 ```python
 $ python3
->>> import zoomeye.sdk as zoomeye
+>>> import zoomeyehk.sdk as zoomeye
 >>> dir(zoomeye)
 ['ZoomEye', 'ZoomEyeDict', '__builtins__', '__cached__', '__doc__',
 '__file__', '__loader__', '__name__', '__package__', '__spec__',
@@ -574,15 +574,15 @@ soft********11180040.b***c.net ['126.***.***.40']
 
 
 ### 0x05 contributions
-[wh0ami1@knownsec 404](https://github.com/wh0ami1)  
-[0x7F@knownsec 404](https://github.com/0x7Fancy)  
-[dawu@knownsec 404](https://github.com/d4wu)  
+[wh0ami1@knownsec 404](https://github.com/wh0ami1)
+[0x7F@knownsec 404](https://github.com/0x7Fancy)
+[dawu@knownsec 404](https://github.com/d4wu)
 [fenix@knownsec 404](https://github.com/13ph03nix)
 
 
 ### 0x06 issue
-**1.SDK和命令行工具的最小请求数量为 20 条**  
-由于 API 的限制导致我们的查询最小单位一次为 20 条数据，对于一个新的 dork 来讲，无论是查看总数量，还是指定只搜索 1 条数据，都将会产生 20 条的开销；当然在命令行模式下我们提供了缓存机制，对于已经搜索过的数据缓存到本地(`~/.config/zoomeye/cache`)，有效期为 5 天，可以大幅度的节省配额。
+**1.SDK和命令行工具的最小请求数量为 20 条**
+由于 API 的限制导致我们的查询最小单位一次为 20 条数据，对于一个新的 dork 来讲，无论是查看总数量，还是指定只搜索 1 条数据，都将会产生 20 条的开销；当然在命令行模式下我们提供了缓存机制，对于已经搜索过的数据缓存到本地(`~/.config/zoomeyehk/cache`)，有效期为 5 天，可以大幅度的节省配额。
 
 **2.如何输入带有引号的 dork ？**
 
@@ -594,19 +594,19 @@ soft********11180040.b***c.net ['126.***.***.40']
 
 ![image-20210205131802799](../images/image-20210205131802799.png)
 
-**3. 为什么在 facet 会出现数据会不一致？**  
+**3. 为什么在 facet 会出现数据会不一致？**
 下图进行 `telnet` 的全数据统计结果，第一次查询的结果是一天前由命令行工具默认发起 20 条数据的查询请求(其中包含统计结果)，并缓存至本地文件夹中；第二次查询我们设置数量为 21 条，命令行工具将读取缓存的 20 条数据，并发起新的查询请求 1 条(实际为最小单位 20 条，其中也包含统计结果)，第一次查询和第二次查询中间间隔一定的时间，这段时间间隔内由于 ZoomEye 周期性的扫描可能更新了该数据，导致出现了如上的数据不一致的情况，因此命令行工具将以新的统计结果为准。
 
 ![image-20210111111035187](../images/image-20210111111035187.png?lastModify=1610354602)
 
-**4.为什么 ZoomEye-python 和浏览器搜索同一个 dork 数据总量可能会不一样？**  
+**4.为什么 ZoomEye-python 和浏览器搜索同一个 dork 数据总量可能会不一样？**
 `ZoomEye` 提供了两个搜索接口分别是 :  `/host/search` 和 `/web/search` ，在 `ZoomEye-python` 中默认只使用了 `/host/search` ，没有使用 `/web/search`。用户可以在根据自己的需要，通过指定 `type` 参数来选择搜索的方式。
 
-![image-20210111141028072](../images/image-20210111141028072.png?lastModify=1610354602)  
+![image-20210111141028072](../images/image-20210111141028072.png?lastModify=1610354602)
 ![image-20210111141114558](../images/image-20210111141114558.png?lastModify=1610354602)
 
-**5.通过 info 命令获取配额信息可能和浏览器端不一致？**   
-浏览器端显示了免费额度和充值额度(<https://www.zoomeye.org/profile/record>)，而在 `ZoomEye-python` 中仅显示了免费额度的信息，我们将在后续版本修复这一问题。
+**5.通过 info 命令获取配额信息可能和浏览器端不一致？**
+浏览器端显示了免费额度和充值额度(<https://www.zoomeye.hk/profile/record>)，而在 `ZoomEye-python` 中仅显示了免费额度的信息，我们将在后续版本修复这一问题。
 
 ### 0x07 404StarLink Project
 
@@ -619,8 +619,8 @@ ZoomEye-python 是 404Team [星链计划](https://github.com/knownsec/404StarLin
 </br>
 
 ---------------------------------
-References:  
-<https://www.zoomeye.org/doc>  
+References:
+<https://www.zoomeye.hk/doc>
 
-knownsec 404  
+knownsec 404
 Time: 2021.01.12
