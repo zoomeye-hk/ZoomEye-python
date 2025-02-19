@@ -14,7 +14,6 @@ from setuptools import setup
 from zoomeyehk import __version__
 
 
-DEPENDENCIES = open('requirements.txt', 'r', encoding='utf-8').read().split('\n')
 README = open('README.rst', 'r', encoding='utf-8').read()
 
 setup(
@@ -27,7 +26,6 @@ setup(
     url='https://github.com/zoomeye-hk/zoomeye-python',  #
     packages=['zoomeyehk'],
     entry_points={'console_scripts': ['zoomeyehk=zoomeyehk.cli:main']},
-    install_requires=DEPENDENCIES,
     keywords=['security tool', 'zoomeye', 'zoomeyehk', 'command tool'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
