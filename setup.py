@@ -14,14 +14,14 @@ from setuptools import setup
 from zoomeyehk import __version__
 
 
-README = open('README.rst', 'r', encoding='utf-8').read()
+README = open('README.md', 'r', encoding='utf-8').read()
 
 setup(
     name='zoomeyehk',
     version=__version__,
     description='Python library and command-line tool for ZoomEye.HK (https://www.zoomeye.hk/doc)',
     long_description=README,
-    long_description_content_type='text/x-rst',
+    long_description_content_type='text/markdown',
     author='ZoomEye.HK',
     url='https://github.com/zoomeye-hk/zoomeye-python',  #
     packages=['zoomeyehk'],
